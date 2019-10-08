@@ -1,9 +1,17 @@
 import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
+
 import './App.css';
+
+import Header from './components/Header';
+import Routes from './routes';
 
 function App() {
   return (
-    <h1>Hello World</h1>
+    <BrowserRouter>
+      <Header />
+      <Routes />
+    </ BrowserRouter>
   );
 }
 
