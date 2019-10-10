@@ -1,6 +1,7 @@
 .info-container {
     background: #F2F2F2;
-    margin-top: 30px;
+    margin-top: 3%;
+    margin-bottom: 3%;
 }
 
 .info-container section header {
@@ -104,7 +105,7 @@
 }
 
 .info-container section article .info-content footer .popularity {
-    border: 3px solid #116193;
+    border: 4px solid #116193;
     border-radius: 50px;
     width: 100px;
     height: 100px;
@@ -114,13 +115,18 @@
 
 .info-container section article .info-content footer .popularity span {
     background: #116193;
-    border: 4px solid #03ced5;
+    border: 6px solid #03ced5;
     border-radius: 50px;
     width: 100%;
     height: 100%;
     float: left;
-    line-height: 78px;
+    line-height: 75px;
     text-align: center;
-    font-size: 40px;
+    font-size: 35px;
     color: #03ced5;
+}
+
+.trailer {
+    margin-bottom: 3%;
+    height: 550px;
 }
