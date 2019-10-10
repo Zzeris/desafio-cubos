@@ -1,14 +1,25 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
+import api from '../services/api';
+
 import './Search.css';
 
 export default function Search(){
     const [search, setSearch] = useState('');
+    const [movies, setMovies] = useState([]);
+    const [genres, setGenres] = useState([]);
 
-    function handleSubmit(event) {
+    async function handleSubmit(event) {
         event.preventDefault();
         
+        const response = await api.get(`search/movie?api_key=${process.env.API_KEY}&language=pt-BR&query=${search}&page=1`);
+
+        const genres = await api.get(`genre/movie/list?api_key=${process.env.API_KEY}&language=pt-BR`);
+
+        setMovies(response.data.results);
+
+        setGenres(genres.data.genres)
     }
 
     return (
@@ -22,35 +33,38 @@ export default function Search(){
                     value={search}
                 />
             </form>
-            <Link to="/info">
-                <section>
-                    <img
-                        src={'https://s3-ap-southeast-1.amazonaws.com/upcode/static/default-image.jpg'}
-                        alt="poster"
-                    />
-                    <article>
-                        <header>
-                            <h1>
-                                Nome do filme
-                                <div className="popularity">
-                                    <span>99%</span>
-                                </div>
-                            </h1>
-                        </header>
-                        <div className="release-date">05/04/1986</div>
-                        <div className="content">
-                            A ticking-time-bomb insomniac and a slippery soap salesman channel primal male aggression into a shocking new form of therapy. Their concept catches on, with underground \"fight clubs\" forming in every town, until an eccentric gets in the way and ignites an out-of-control spiral toward oblivion.
-                            A ticking-time-bomb insomniac and a slippery soap salesman channel primal male aggression into a shocking new form of therapy. Their concept catches on, with underground \"fight clubs\" forming in every town, until an eccentric gets in the way and ignites an out-of-control spiral toward oblivion.
-                        </div>
-                        <footer>
-                            <div className="genres">
-                                <span>1</span>
-                                <span>2</span>
+            {movies.map(movie => (
+                <Link to={`/info/${movie.id}`} key={movie.id}>
+                    <section>
+                        {!movie.poster_path ? <img
+                            src={'https://s3-ap-southeast-1.amazonaws.com/upcode/static/default-image.jpg'}
+                            alt="poster"
+                            /> : <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt="poster" />}
+                        <article>
+                            <header>
+                                <h1>
+                                    {movie.title}
+                                    <div className="popularity">
+                                        <span>{Math.floor(movie.popularity)}%</span>
+                                    </div>
+                                </h1>
+                            </header>
+                            <div className="release-date">{movie.release_date}</div>
+                            <div className="content">
+                                {movie.overview}
                             </div>
-                        </footer>
-                    </article>
-                </section>
-            </Link>
+                            <footer>
+                                <div className="genres">
+                                    {(typeof(movie.genre_ids) == 'object') ?
+                                        movie.genre_ids.map(genre_id => (
+                                            <span key={genre_id}>{genre_id}</span>
+                                        )) : <span>Sem gênero</span>}
+                                </div>
+                            </footer>
+                        </article>
+                    </section>
+                </Link>
+            ))}
         </div>
     );
 }
