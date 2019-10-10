@@ -94,6 +94,7 @@
 }
 
 .container section article footer .genres span {
+    background: #FFF;
     color: #03ced5;
     border: 2px solid #03ced5;
     border-radius: 25px;

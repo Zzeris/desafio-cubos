@@ -21,16 +21,17 @@ export default function Search(){
     }
 
     function formatDate(date) {
-        const [year, month, day] = date.split('-');
-        const result = `${day}/${month}/${year}`;
-        return result
+        if (date) {
+            const [year, month, day] = date.split('-');
+            return `${day}/${month}/${year}`
+        }
     }
 
     function formatGenre(id) {
         const result = genres.find(genre => genre.id === id);
         if (result) return result.name
     }
-
+console.log(movies)
     return (
         <div className="container">
             <form onSubmit={handleSubmit}>
