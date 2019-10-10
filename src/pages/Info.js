@@ -1,22 +1,33 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+
+import api from '../services/api';
 
 import './Info.css';
 
-export default function Info(){
+export default function Info({ match }){
+    const [movie, setMovie] = useState({});
+
+    useEffect(()=>{
+        async function loadMovie() {
+            const response = await api.get(`movie/${match.params.id}?api_key=${process.env.API_KEY}&language=pt-BR&append_to_response=videos`)
+            setMovie(response.data);
+        }
+        loadMovie();
+    },[match.params.id]);
+    
     return (
         <div className="info-container">
             <section>
                 <header>
-                    <h1>TNome do filme</h1>
-                    <span>05/04/1986</span>
+                    <h1>{movie.title}</h1>
+                    <span>{movie.release_date}</span>
                 </header>
                 <article>
                     <div className="info-content">
                         <div className="synopsis">
                             <h2>Sinopse</h2>
                             <span>
-                                A ticking-time-bomb insomniac and a slippery soap salesman channel primal male aggression into a shocking new form of therapy. Their concept catches on, with underground \"fight clubs\" forming in every town, until an eccentric gets in the way and ignites an out-of-control spiral toward oblivion.
-                                A ticking-time-bomb insomniac and a slippery soap salesman channel primal male aggression into a shocking new form of therapy. Their concept catches on, with underground \"fight clubs\" forming in every town, until an eccentric gets in the way and ignites an out-of-control spiral toward oblivion.
+                                {movie.overview}
                             </span>
                         </div>
                         <div className="information">
@@ -24,40 +35,47 @@ export default function Info(){
                             <ul>
                                 <li>
                                     <h2>Situação</h2>
-                                    <span>Lançado</span>
+                                    <span>{(movie.status === 'Released') ? 'Lançado' : 'Em breve'}</span>
                                 </li>
                                 <li>
-                                    <h2>Situação</h2>
-                                    <span>Lançado</span>
+                                    <h2>Idioma</h2>
+                                    <span>{(typeof(movie.spoken_languages) == 'object') ?
+                                        movie.spoken_languages.map(language => (<div>{language.name}</div>))
+                                        : 'Português'
+                                    }</span>
                                 </li>
                                 <li>
-                                    <h2>Situação</h2>
-                                    <span>Lançado</span>
+                                    <h2>Duração</h2>
+                                    <span>{movie.runtime}min</span>
                                 </li>
                                 <li>
-                                    <h2>Situação</h2>
-                                    <span>Lançado</span>
+                                    <h2>Orçamento</h2>
+                                    <span>${movie.budget}</span>
                                 </li>
                                 <li>
-                                    <h2>Situação</h2>
-                                    <span>Lançado</span>
+                                    <h2>Receita</h2>
+                                    <span>${movie.revenue}</span>
+                                </li>
+                                <li>
+                                    <h2>Lucro</h2>
+                                    <span>${movie.revenue - movie.budget}</span>
                                 </li>
                             </ul>
                         </div>
                         <footer>
                             <div className="info-genres">
-                                <span>Aventura</span>
-                                <span>Comédia</span>
+                                {(typeof(movie.genres) == 'object') ?
+                                    movie.genres.map(genre => (<span>{genre.name}</span>)) : <span>Sem gênero</span>}
                             </div>
                             <div className="popularity">
-                                <span>99%</span>
+                                <span>{Math.floor(movie.popularity)}%</span>
                             </div>
                         </footer>
                     </div>
-                    <img
+                    {!movie.poster_path ? <img
                         src={'https://s3-ap-southeast-1.amazonaws.com/upcode/static/default-image.jpg'}
                         alt="poster"
-                    />
+                        /> : <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt="poster" />}
                 </article>
                 <div className="trailer"></div>
             </section>

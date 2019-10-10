@@ -43,6 +43,10 @@
     padding-bottom: 0.5%;
 }
 
+.info-container section article .info-content .synopsis span {
+    opacity: 0.8;
+}
+
 .info-container section article .info-content .information {
     margin: 4%;
     opacity: 0.8;
@@ -65,13 +69,17 @@
     display: flex;
     flex-direction: column;
     text-align: center;
-    margin-right: 6%;
+    margin-right: 9%;
 }
 
 .info-container section article .info-content .information ul li h2 {
     color: #116193;
     font-size: 22px;
     border: none;
+}
+
+.info-container section article .info-content .information ul li span {
+    opacity: 0.8;
 }
 
 .info-container section article .info-content footer {
@@ -87,10 +95,11 @@
 }
 
 .info-container section article .info-content footer .info-genres span {
+    background: #FFF;
     color: #03ced5;
     border: 2px solid #03ced5;
     border-radius: 25px;
-    padding: 4% 15%;
+    padding: 2% 8%;
     margin-right: 10px;
 }
 
@@ -100,7 +109,7 @@
     width: 80px;
     height: 80px;
     float: left;
-    margin-right: 20px;
+    margin-right: 4%;
 }
 
 .info-container section article .info-content footer .popularity span {

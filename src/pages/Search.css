@@ -36,7 +36,6 @@
 }
 
 .container section img {
-    height: 350px;
     width: 100%;
 }
 
@@ -77,20 +76,21 @@
 }
 
 .container section article .release-date {
+    color: black;
     text-align: left;
     opacity: 0.4;
     margin-top: 5px;
 }
 
 .container section article .content {
+    color: #666;
     text-align: left;
     padding: 4% 5% 4% 4%;
-    opacity: 0.8;
 }
 
 .container section article footer .genres {
     text-align: left;
-    padding: 0 0 0 3.5%;
+    padding: 0 0 2% 3.5%;
 }
 
 .container section article footer .genres span {
