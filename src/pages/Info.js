@@ -9,18 +9,27 @@ export default function Info({ match }){
 
     useEffect(()=>{
         async function loadMovie() {
-            const response = await api.get(`movie/${match.params.id}?api_key=${process.env.API_KEY}&language=pt-BR&append_to_response=videos`)
+            const response = await api.get(`movie/${match.params.id}?api_key=8812f46d36cdbfdb2b0367796e98c9cb&language=pt-BR&append_to_response=videos`)
             setMovie(response.data);
+            console.log(response.data)
         }
         loadMovie();
     },[match.params.id]);
+
+    function formatDate(date) {
+        if (date) {
+            const [year, month, day] = date.split('-');
+            const result = `${day}/${month}/${year}`;
+            return result
+        }
+    }
     
     return (
         <div className="info-container">
             <section>
                 <header>
                     <h1>{movie.title}</h1>
-                    <span>{movie.release_date}</span>
+                    <span>{formatDate(movie.release_date)}</span>
                 </header>
                 <article>
                     <div className="info-content">

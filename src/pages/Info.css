@@ -83,15 +83,15 @@
 }
 
 .info-container section article .info-content footer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 8fr 1fr;
     margin-bottom: 3%;
 }
 
 .info-container section article .info-content footer .info-genres {
     text-align: left;
     padding-left: 4%;
+    margin-top: 4%;
 }
 
 .info-container section article .info-content footer .info-genres span {
@@ -99,17 +99,17 @@
     color: #03ced5;
     border: 2px solid #03ced5;
     border-radius: 25px;
-    padding: 2% 8%;
+    padding: 4px 20px;
     margin-right: 10px;
 }
 
 .info-container section article .info-content footer .popularity {
     border: 3px solid #116193;
     border-radius: 50px;
-    width: 80px;
-    height: 80px;
+    width: 100px;
+    height: 100px;
     float: left;
-    margin-right: 4%;
+    margin-right: 25%;
 }
 
 .info-container section article .info-content footer .popularity span {
@@ -119,8 +119,8 @@
     width: 100%;
     height: 100%;
     float: left;
-    line-height: 65px;
+    line-height: 78px;
     text-align: center;
-    font-size: 30px;
+    font-size: 40px;
     color: #03ced5;
 }
