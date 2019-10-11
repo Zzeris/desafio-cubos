@@ -21,7 +21,19 @@ export default function Info({ match }){
             return `${day}/${month}/${year}`
         }
     }
-    
+
+    function formatValue(value) {
+        let tmp = value+'';
+        tmp = tmp.replace(/([0-9]{2})$/g, ",$1");
+        if (tmp.length > 6)
+            tmp = tmp.replace(/([0-9]{3}),([0-9]{2})$/g, ".$1,$2");
+
+        if( tmp.length > 9)
+            tmp = tmp.replace(/([0-9]{3}).([0-9]{3}),([0-9]{2}$)/g,".$1.$2,$3");
+            
+        return tmp
+    }
+
     return (
         <>
             <div className="info-container">
@@ -58,15 +70,15 @@ export default function Info({ match }){
                                     </li>
                                     <li>
                                         <h2>Orçamento</h2>
-                                        <span>${movie.budget}</span>
+                                        <span>${formatValue(movie.budget)}</span>
                                     </li>
                                     <li>
                                         <h2>Receita</h2>
-                                        <span>${movie.revenue}</span>
+                                        <span>${formatValue(movie.revenue)}</span>
                                     </li>
                                     <li>
                                         <h2>Lucro</h2>
-                                        <span>${movie.revenue - movie.budget}</span>
+                                        <span>${formatValue(movie.revenue - movie.budget)}</span>
                                     </li>
                                 </ul>
                             </div>
@@ -88,7 +100,6 @@ export default function Info({ match }){
                     </article>
                 </section>
             </div>
-            {console.log(movie.videos)}
             {(movie.videos && typeof(movie.videos.results) == 'object') ?
                 movie.videos.results.map(video => (
                     <div className="trailer" key={video.id}>
