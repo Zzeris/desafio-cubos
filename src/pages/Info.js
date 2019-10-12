@@ -23,15 +23,23 @@ export default function Info({ match }){
     }
 
     function formatValue(value) {
-        let tmp = value+'';
-        tmp = tmp.replace(/([0-9]{2})$/g, ",$1");
-        if (tmp.length > 6)
-            tmp = tmp.replace(/([0-9]{3}),([0-9]{2})$/g, ".$1,$2");
+        let result = value+'';
+        result = result.replace(/([0-9]{2})$/g, ",$1");
+        if (result.length > 6)
+            result = result.replace(/([0-9]{3}),([0-9]{2})$/g, ".$1,$2");
 
-        if( tmp.length > 9)
-            tmp = tmp.replace(/([0-9]{3}).([0-9]{3}),([0-9]{2}$)/g,".$1.$2,$3");
+        if( result.length > 9)
+            result = result.replace(/([0-9]{3}).([0-9]{3}),([0-9]{2}$)/g,".$1.$2,$3");
             
-        return tmp
+        return result
+    }
+
+    function formatTime(time) {
+        let result = time+'';
+        if (result.length === 3)
+            result = result.replace(/([0-9]{2})$/g, "h $1");
+
+        return result
     }
 
     return (
@@ -66,7 +74,7 @@ export default function Info({ match }){
                                     </li>
                                     <li>
                                         <h2>Duração</h2>
-                                        <span>{movie.runtime}min</span>
+                                        <span>{formatTime(movie.runtime)}min</span>
                                     </li>
                                     <li>
                                         <h2>Orçamento</h2>
