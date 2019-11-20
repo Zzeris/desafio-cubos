@@ -7,6 +7,7 @@ permitindo buscar e ver detalhes de filmes de seu catálogo.
 
 ### Pré-requisitos
 
+* Você deve ter o git instalado em sua máquina;
 * Você deve ter o node instalado em sua máquina;
 * Você deve ter npm ou yarn instalado em sua máquina.
 
@@ -15,13 +16,13 @@ Para executar este projeto, siga as instruções abaixo:
 1. Clone este repositório do github:
 
 ```
-$ git clone https://github.com/Zzeris/desafio-cubos.git
+$ git clone https://github.com/Zzeris/desafio-frontend-cubos.git
 ```
 
 2. Vá para a pasta desafio-cubos:
 
 ```
-$ cd desafio-cubos
+$ cd desafio-frontend-cubos
 ```
 
 3. Agora, execute:
