@@ -15,21 +15,30 @@ permitindo buscar e ver detalhes de filmes de seu catálogo.
 
 Para executar este projeto, siga as instruções abaixo:
 
-1. Clone este repositório do github:
+1. Abra o Prompt de comando (CMD);
+
+2. Clone este repositório do github:
 
 ```
 $ git clone https://github.com/Zzeris/desafio-frontend-cubos.git
 ```
 
-2. Vá para a pasta desafio-cubos:
+3. Vá para a pasta desafio-frontend-cubos:
 
 ```
 $ cd desafio-frontend-cubos
 ```
 
-3. Agora, execute:
+4. Instale as dependêcias:
 
 ```
-$ yarn install
+$ yarn
+```
+
+5. Agora, execute o aplicativo:
+
+```
 $ yarn start
 ```
+
+Caso não abra automaticamente, acesse http://localhost:3000 para visualizá-lo no navegador.
