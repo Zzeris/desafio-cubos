@@ -2,7 +2,7 @@
 
 ![Screenshot 1](screenshot.png)
 
-Esta aplicação foi construida utilizando ReactJS e consome a API do The Movie DB
+🎬 Esta aplicação foi construida utilizando ReactJS e consome a API do The Movie DB
 permitindo buscar e ver detalhes de filmes de seu catálogo.
 
 ## Começando
